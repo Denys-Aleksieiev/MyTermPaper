@@ -1,0 +1,46 @@
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\UnitTests.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\UnitTests.pdb
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Epam_FinalProject_FileManager_BLL.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Epam_FinalProject_FileManager_DAL.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\AutoMapper.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\EntityFramework.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Epam_FinalProject_FileManager_BLL.pdb
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Epam_FinalProject_FileManager_DAL.pdb
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\AutoMapper.pdb
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\AutoMapper.xml
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\EntityFramework.xml
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.pdb
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\UnitTests.dll.config
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\UnitTests\bin\Debug\AutoMapper.Net4.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\UnitTests.dll.config
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\UnitTests.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\UnitTests.pdb
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\EntityFramework.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Epam_FinalProject_FileManager_BLL.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Epam_FinalProject_FileManager_DAL.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\AutoMapper.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Epam_FinalProject_FileManager_BLL.pdb
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Epam_FinalProject_FileManager_DAL.pdb
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\EntityFramework.xml
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\AutoMapper.pdb
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\bin\Debug\AutoMapper.xml
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.dll
+C:\Users\Denys Aleksieiev\Desktop\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.pdb

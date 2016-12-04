@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<br/>
+@using (Html.BeginForm("Index", "PublicStorage",FormMethod.Post, new {}))
+{
+    if(ViewBag.Error != null)
+     {
+         @ViewBag.Error
+         <br/>
+    }
+    <div class="form-group">
+        <label for="AnonimOwner">Your name </label>
+        <input type="text"class="form-control" name="AnonimOwner" id="AnonimOwner" placeholder="Enter your name here">
+    </div>
+    <p style="text-align: center;">
+            <input type="submit" value="Submit" class="btn btn-success"/>
+    </p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
