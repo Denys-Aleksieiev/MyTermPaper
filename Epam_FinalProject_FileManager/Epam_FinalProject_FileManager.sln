@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam_FinalProject_FileManager", "Epam_FinalProject_FileManager\Epam_FinalProject_FileManager.csproj", "{F50D4B19-5B70-4F1A-B711-BB396DC27D07}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2E00F47A-D9F5-4351-B1DA-C92C67D4E651} = {2E00F47A-D9F5-4351-B1DA-C92C67D4E651}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam_FinalProject_FileManager_DAL", "Epam_FinalProject_FileManager_DAL\Epam_FinalProject_FileManager_DAL.csproj", "{E26FBA1D-0B38-4045-88FA-C2CABDC9F619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam_FinalProject_FileManager_BLL", "Epam_FinalProject_FileManager_BLL\Epam_FinalProject_FileManager_BLL.csproj", "{C3CC6528-72DD-4D7C-877F-60E7500F0F29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WcfService3\WCFService.csproj", "{2E00F47A-D9F5-4351-B1DA-C92C67D4E651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C8CCFA11-0B96-4170-9410-E50C7A95E75A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F50D4B19-5B70-4F1A-B711-BB396DC27D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50D4B19-5B70-4F1A-B711-BB396DC27D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F50D4B19-5B70-4F1A-B711-BB396DC27D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F50D4B19-5B70-4F1A-B711-BB396DC27D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E26FBA1D-0B38-4045-88FA-C2CABDC9F619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E26FBA1D-0B38-4045-88FA-C2CABDC9F619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E26FBA1D-0B38-4045-88FA-C2CABDC9F619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E26FBA1D-0B38-4045-88FA-C2CABDC9F619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3CC6528-72DD-4D7C-877F-60E7500F0F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3CC6528-72DD-4D7C-877F-60E7500F0F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3CC6528-72DD-4D7C-877F-60E7500F0F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3CC6528-72DD-4D7C-877F-60E7500F0F29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E00F47A-D9F5-4351-B1DA-C92C67D4E651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E00F47A-D9F5-4351-B1DA-C92C67D4E651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E00F47A-D9F5-4351-B1DA-C92C67D4E651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E00F47A-D9F5-4351-B1DA-C92C67D4E651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8CCFA11-0B96-4170-9410-E50C7A95E75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8CCFA11-0B96-4170-9410-E50C7A95E75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8CCFA11-0B96-4170-9410-E50C7A95E75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8CCFA11-0B96-4170-9410-E50C7A95E75A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

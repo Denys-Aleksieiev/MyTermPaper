@@ -1,0 +1,6 @@
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService3\bin\WcfService3.dll.config
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService3\bin\WcfService3.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService3\bin\WcfService3.pdb
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService3\obj\Debug\WcfService3.csprojResolveAssemblyReference.cache
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService3\obj\Debug\WcfService3.dll
+C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService3\obj\Debug\WcfService3.pdb

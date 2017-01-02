@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@*<style>
+            hr {
+    border: none;
+    height: 1px;
+    background-color:burlywood; /* Modern Browsers */
+}
+</style>*@
+
+<div class="row">
+    <div class="col-md-4 jumbotron" style="background-color: white">
+        <h1><span class="label label-primary">File Ocean</span></h1>
+        <h2><span class="label label-success">Cloud storage for you!</span></h2>
+    </div>
+    <div class="col-md-7 col-md-offset-1">
+        <img src="~/Content/img3.jpg"/>
+    </div>
+</div>
+<hr/>
+            <div class="row" style="margin-left: 10px">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="col-md-6">
+                        <h2>Personal 50GB</h2>
+                        <p class="lead">Want personal 50GB on a cloud? Register yourself and upload as many files as you need. </p>
+                        <p>
+                            <a class="btn btn-default" href="@Url.Action("Register", "Account")">Register &raquo;</a>
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-6">
+                        <h2>Personal Storage</h2>
+                        <p class="lead">Wonderful! Personal 50GB are available now! Upload files, listen to music, watch films, and enjoy the ocean. </p>
+                        <p>
+                            <a class="btn btn-default" href="@Url.Action("UserFiles", "MyStorage")">Storage &raquo;</a>
+                        </p>
+                    </div>
+                }
+                <div class="col-md-6">
+                    <h2>Public Storage</h2>
+                    <p class="lead">You can easily upload your files even without registration, however, others have access to them too.</p>
+                    <p><a class="btn btn-default" href="@Url.Action("UserFiles", "PublicStorage")">Storage &raquo;</a></p>
+                </div>
+            </div>
+
+

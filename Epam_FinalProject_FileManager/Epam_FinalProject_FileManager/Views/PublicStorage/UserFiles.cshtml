@@ -1,0 +1,137 @@
+﻿@model Epam_FinalProject_FileManager.Models.PublicFileViewModel
+@using Epam_FinalProject_FileManager;
+@using PagedList;
+
+@{
+    ViewBag.Title = "UserFiles";
+}
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryfileupload2")
+}
+@section Styles
+{
+    @Styles.Render("~/Content/jqueryfileupload")
+}
+<div class="container">
+    <h3>@ViewBag.PageTitle</h3>
+    <div class="row">
+    </div>
+    <br />
+    <div>
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" onclick="UploadFilesModal(); return false;">
+                    <span class="glyphicon glyphicon-upload"></span> Upload files
+                </button>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group custom-search-form">
+                    <input id="searchString" type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="btnSearch">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <br />
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-6">
+                                <span id="columnNameHead" class="cursor-pointer">
+                                    Title <span><span class="caret"></span></span>
+                                </span>
+                            </th>
+                            <th class="col-md-2 text-center">
+                                <span id="columnDateHead" class="cursor-pointer">
+                                    Uploaded<span><span></span></span>
+                                </span>
+                            </th>
+                            <th class="col-md-2 text-center">
+                                <span id="columnOwnerHead" class="cursor-pointer">
+                                    Owner <span><span></span></span>
+                                </span>
+                            </th>
+                            <th class="col-md-2 text-center">
+                                <span id="columnSizeHead" class="cursor-pointer">
+                                    Size <span><span></span></span>
+                                </span>
+                            </th>
+                            <th class="col-md-3"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="files_table_body">
+                    @* ReSharper disable once PossibleNullReferenceException *@
+                        @{Html.RenderPartial("_UserFilesListPartial", model: Model.Files.ToPagedList(1, pageSize: Model.PageSize));}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sharing -->
+    <div class="modal fade" id="fileSharingModal" tabindex="-1" role="dialog" aria-labelledby="upload" aria-hidden="true">
+        <div class="modal-dialog" style="padding-top: 5%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Share</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>The file's reference:</h5>
+                    <div class="coll-md-11">
+                        <div class="form-horizontal">
+                            <input id="shareLinkTextbox" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="alert alert-info" role="alert">
+                        <span class="glyphicon glyphicon-info-sign"></span> Anyone who has this reference is able to download the file!
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="sharingDoneButton" type="button" class="btn btn-primary" data-dismiss="modal" onclick="FileSharingDone(this);">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Uploading -->
+    <div class="modal fade" id="fileUploadModal" tabindex="-1" role="dialog" aria-labelledby="upload" aria-hidden="true">
+        <div class="modal-dialog" style="padding-top: 5%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Files uploading</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-2">Name</th>
+                                <th class="col-md-2">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="uploadFilesList"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <span class="btn btn-primary fileinput-button">
+                        <span>Add files...</span>
+                        <input id="fileUploadButton" type="file" name="files[]" multiple />
+                    </span>
+                    <button id="uploadAbort" type="button" class="btn btn-success" data-dismiss="modal">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
