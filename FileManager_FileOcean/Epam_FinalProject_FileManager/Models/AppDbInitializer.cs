@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Epam_FinalProject_FileManager.Models
 {
-    internal class AppDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    internal class AppDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
