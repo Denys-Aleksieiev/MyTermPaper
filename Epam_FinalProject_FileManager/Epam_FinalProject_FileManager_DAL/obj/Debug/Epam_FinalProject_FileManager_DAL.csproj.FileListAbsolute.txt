@@ -64,6 +64,5 @@ C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\Epam_FinalProject_FileManager_DAL\bin\Debug\Mapping.Common.pdb
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\Epam_FinalProject_FileManager_DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\Epam_FinalProject_FileManager_DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\Epam_FinalProject_FileManager_DAL\obj\Debug\Epam_FinalProject_FileManager_DAL.csprojResolveAssemblyReference.cache
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\Epam_FinalProject_FileManager_DAL\obj\Debug\Epam_FinalProject_FileManager_DAL.dll
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\Epam_FinalProject_FileManager_DAL\obj\Debug\Epam_FinalProject_FileManager_DAL.pdb

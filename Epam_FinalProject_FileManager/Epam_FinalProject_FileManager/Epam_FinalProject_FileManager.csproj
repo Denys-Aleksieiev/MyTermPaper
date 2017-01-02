@@ -277,11 +277,6 @@
     <Compile Include="Models\FileViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\FileSizeEvaluationServiceNamespace\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -486,12 +481,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <None Include="Service References\FileSizeEvaluationServiceNamespace\configuration91.svcinfo" />
-    <None Include="Service References\FileSizeEvaluationServiceNamespace\configuration.svcinfo" />
-    <None Include="Service References\FileSizeEvaluationServiceNamespace\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -539,13 +528,6 @@
     <Content Include="Views\PublicStorage\FileNowFound.cshtml" />
     <Content Include="Views\PublicStorage\Index.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
-    <None Include="Service References\FileSizeEvaluationServiceNamespace\SizeEvaluationService.wsdl" />
-    <None Include="Service References\FileSizeEvaluationServiceNamespace\SizeEvaluationService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FileSizeEvaluationServiceNamespace\SizeEvaluationService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\MyStorage\_ContentView.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -571,9 +553,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\FileSizeEvaluationServiceNamespace\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

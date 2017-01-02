@@ -5,8 +5,6 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using Epam_FinalProject_FileManager.FileSizeEvaluationServiceNamespace;
 using Epam_FinalProject_FileManager.Models;
 using Epam_FinalProject_FileManager_BLL.DTO;
 using Epam_FinalProject_FileManager_BLL.Interfaces;
@@ -20,7 +18,6 @@ namespace Epam_FinalProject_FileManager.Controllers
     {
         IFileService fileService;
         IUserService userService;
-        readonly SizeEvaluationServiceClient _evaluationService = new SizeEvaluationServiceClient();
         private int pageSize = 15;
 
         public MyStorageController(IFileService fileS, IUserService userS)
@@ -196,8 +193,8 @@ namespace Epam_FinalProject_FileManager.Controllers
             string percentString = percents.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
 
            
-            string occupiedSize = _evaluationService.Evaluate(filesSize);
-            string totalSize = _evaluationService.Evaluate(userStorageSize);
+            string occupiedSize = Evaluate(filesSize);
+            string totalSize = Evaluate(userStorageSize);
 
             return Content("{\"occupiedSize\":\"" + occupiedSize + "\",\"totalSize\":\""
                 + totalSize + "\", \"percent\":\"" + percentString + "\"}", "application/json");
@@ -364,6 +361,17 @@ namespace Epam_FinalProject_FileManager.Controllers
                 return new FileContentResult(fileContents, "documentfile.docx");
 
             return new FileContentResult(fileContents, mimeType);
+        }
+
+        private string Evaluate(long count)
+        {
+            string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }; //Longs run out around EB
+            if (count == 0)
+                return "0" + suf[0];
+            long bytes = Math.Abs(count);
+            int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
+            double num = Math.Round(bytes / Math.Pow(1024, place), 2);
+            return (Math.Sign(count) * num).ToString() + suf[place];
         }
     }
 }
