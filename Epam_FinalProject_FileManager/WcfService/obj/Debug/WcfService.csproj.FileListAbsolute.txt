@@ -1,8 +1,0 @@
-C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService\bin\WcfService.dll.config
-C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService\bin\WcfService.dll
-C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService\bin\WcfService.pdb
-C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService\bin\System.Web.Mvc.dll
-C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService\bin\System.Web.Mvc.xml
-C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService\obj\Debug\WcfService.dll
-C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService\obj\Debug\WcfService.pdb
-C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
