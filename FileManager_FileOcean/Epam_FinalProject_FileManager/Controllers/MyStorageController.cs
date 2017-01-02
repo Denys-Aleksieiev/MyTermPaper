@@ -26,7 +26,6 @@ namespace Epam_FinalProject_FileManager.Controllers
             userService = userS;
         }
 
-
         public ActionResult UFiles(string sortOrder, Func<string, IEnumerable<FileEntityDTO>> func, int? page = null, string searchString = null)
         {
             string userId = User.Identity.GetUserId();
@@ -307,7 +306,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                         "\",\"message\":\"" + r[0].Message + "\"}", "application/json");
                 }
             }
-            catch (HttpException e)
+            catch (HttpException)
             {
                 return Content("{\"name\":\"\",\"status\":\"false\",\"message\":\"Превишен максимальный размер файла\"}", "application/json");
             }
@@ -353,7 +352,7 @@ namespace Epam_FinalProject_FileManager.Controllers
             return File(file, System.Net.Mime.MediaTypeNames.Application.Pdf, name);
         }
 
-        public FileContentResult File(string path,string extension)
+        public new FileContentResult File(string path,string extension)
         {
             var fileContents = System.IO.File.ReadAllBytes(path);
             var mimeType = "application/pdf";

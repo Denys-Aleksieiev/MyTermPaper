@@ -10,13 +10,16 @@
          @ViewBag.Error
          <br/>
     }
-    <div class="form-group">
-        <label for="AnonimOwner">Your name </label>
-        <input type="text"class="form-control" name="AnonimOwner" id="AnonimOwner" placeholder="Enter your name here">
+
+    <div class="row">
+        <div class="form-group col-md-offset-4 col-md-4">
+            <label for="AnonimOwner">Your name </label>
+            <input type="text" class="form-control" name="AnonimOwner" id="AnonimOwner" placeholder="Enter your name here">
+        </div>
     </div>
-    <p style="text-align: center;">
-            <input type="submit" value="Submit" class="btn btn-success"/>
-    </p>
+    <div class="row">
+        <input type="submit" value="Submit" class="col-md-offset-7 btn btn-success" />
+    </div>
 }
 
 @section Scripts {
