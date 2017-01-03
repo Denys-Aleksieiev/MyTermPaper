@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Text;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.DataVisualization.Charting;
 using Epam_FinalProject_FileManager_BLL.Interfaces;
-using i18n.Helpers;
 using Microsoft.AspNet.Identity;
 
 namespace Epam_FinalProject_FileManager.Controllers
 {
-    
+
     public class StatisticsController : Controller
     {
         private IFileService fileService;
@@ -28,17 +25,17 @@ namespace Epam_FinalProject_FileManager.Controllers
         }
 
         [Authorize]
-        public FileContentResult MyStatistics()
+        public ActionResult MyStatistics()
         {
             return ComputeStatistics(User.Identity.GetUserId());
         }
 
-        public FileContentResult PublicStatistics()
+        public ActionResult PublicStatistics()
         {
             return ComputeStatistics("4830dc12 - e379 - 4daf - a658 - 65ca17d11ed3");
         }
 
-        public FileContentResult ComputeStatistics(string id)
+        public ActionResult ComputeStatistics(string id)
         {
             int video = fileService.GetAllUserVideos(id).ToList().Count;
             int audio = fileService.GetAllUserAudios(id).ToList().Count;
@@ -58,12 +55,12 @@ namespace Epam_FinalProject_FileManager.Controllers
             return RenderStatistics(valueList, labelList);
         }
 
-        private FileContentResult RenderStatistics(List<int> values, List<string> labels )
+        private ActionResult RenderStatistics(List<int> values, List<string> labels)
         {
             var dates = new List<Tuple<int, string>>();
-            for(int i = 0; i < values.Count; i++)
+            for (int i = 0; i < values.Count; i++)
             {
-                dates.Add(new Tuple<int, string>(values[i],labels[i]));
+                dates.Add(new Tuple<int, string>(values[i], labels[i]));
             }
 
             var chart = new Chart();
@@ -84,11 +81,10 @@ namespace Epam_FinalProject_FileManager.Controllers
             chart.Legends.Add(CreateLegend());
             chart.Series.Add(CreateSeries(dates, SeriesChartType.Doughnut, Color.Gold));
             chart.ChartAreas.Add(CreateChartArea());
-       
-            
 
             var ms = new MemoryStream();
             chart.SaveImage(ms);
+
             return File(ms.GetBuffer(), @"image/png");
         }
 
@@ -98,7 +94,7 @@ namespace Epam_FinalProject_FileManager.Controllers
             Title title = new Title();
             title.Text = "File types chart";
             title.ShadowColor = Color.FromArgb(32, 0, 0, 0);
-            title.Font = new Font("Trebuchet MS",24F, FontStyle.Bold);
+            title.Font = new Font("Trebuchet MS", 24F, FontStyle.Bold);
             title.ShadowOffset = 3;
             title.ForeColor = Color.FromArgb(26, 59, 105);
 
@@ -114,10 +110,10 @@ namespace Epam_FinalProject_FileManager.Controllers
             var seriesDetail = new Series();
             seriesDetail.Name = "Files type result";
             seriesDetail.IsValueShownAsLabel = false;
-            
 
 
-            seriesDetail.Font =  new System.Drawing.Font("Trebuchet MS", 14F);
+
+            seriesDetail.Font = new System.Drawing.Font("Trebuchet MS", 14F);
             seriesDetail.Color = color;
             seriesDetail.ChartType = chartType;
             seriesDetail.BorderWidth = 2;
@@ -132,13 +128,13 @@ namespace Epam_FinalProject_FileManager.Controllers
                 point.AxisLabel = result.Item2;
                 point.YValues = new double[] { result.Item1 };
                 point.LegendText = result.Item2;
-               
+
                 seriesDetail.Points.Add(point);
             }
-            
+
             seriesDetail.Label = "#PERCENT{P0}";
             seriesDetail.ChartArea = "File types chart";
-        
+
 
             return seriesDetail;
         }

@@ -528,7 +528,6 @@
     <Content Include="Views\PublicStorage\FileNowFound.cshtml" />
     <Content Include="Views\PublicStorage\Index.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
-    <Content Include="Views\MyStorage\_ContentView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UserFiles\Temp\" />
@@ -549,6 +548,10 @@
     <ProjectReference Include="..\Epam_FinalProject_FileManager_DAL\FileManager_FileOcean_DAL.csproj">
       <Project>{e26fba1d-0b38-4045-88fa-c2cabdc9f619}</Project>
       <Name>FileManager_FileOcean_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileManager_FileOcean_Compression\FileManager_FileOcean_Compression.csproj">
+      <Project>{67a14617-b989-47d1-8a8a-a8aef1b01970}</Project>
+      <Name>FileManager_FileOcean_Compression</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

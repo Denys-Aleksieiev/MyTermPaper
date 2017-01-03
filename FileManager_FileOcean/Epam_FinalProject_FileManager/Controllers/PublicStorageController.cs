@@ -77,6 +77,7 @@ namespace Epam_FinalProject_FileManager.Controllers
         [HttpGet]
         public ActionResult UserAudioFiles(string sortOrder, string searchString = null, int? page = null)
         {
+
             if (Session["AnonimOwner"] == null)
             {
                 return RedirectToAction("Index");
@@ -99,7 +100,7 @@ namespace Epam_FinalProject_FileManager.Controllers
         }
 
         [HttpGet]
-        public ActionResult UFiles(string sortOrder, Func<string, IEnumerable<FileEntityDTO>> func,  int? page = null,string searchString = null)
+        public ActionResult UFiles(string sortOrder, Func<string, IEnumerable<FileEntityDTO>> func, int? page = null, string searchString = null)
         {
             Func<string, IEnumerable<FileEntityDTO>> getUsers = func;
             var files = getUsers.Invoke(USERID);
@@ -165,7 +166,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                     Files = files.OrderBy(f => f.FileName),
                     PageSize = pageSize
                 };
-                return View("UserFiles",defaultResult);
+                return View("UserFiles", defaultResult);
             }
         }
 
@@ -174,14 +175,32 @@ namespace Epam_FinalProject_FileManager.Controllers
         public FileStreamResult Download(string fileId)
         {
             var file = fileService.GetFileById(fileId);
-            return File(new FileStream(file.FilePath, FileMode.Open), "application/octet-stream", file.FileName);
+            Stream decompressedStream = new FileStream(@"compressed.lzma", FileMode.Open);
+
+            using (var fileStream = new FileStream(file.FilePath, FileMode.Open))
+            {
+                CompressionTechniques.LZMA.Decompress(fileStream, decompressedStream);
+            }
+
+            decompressedStream.Position = 0;
+
+            return File(decompressedStream, "application/octet-stream", file.FileName);
         }
         [HttpGet]
         [AllowAnonymous]
         public FileStreamResult DownloadPublic(string shareLink)
         {
             var file = fileService.GetFileByShareLink(shareLink);
-            return File(new FileStream(file.FilePath, FileMode.Open), "application/octet-stream", file.FileName);
+            Stream decompressedStream = new FileStream(@"compressed.lzma", FileMode.Open);
+
+            using (var fileStream = new FileStream(file.FilePath, FileMode.Open))
+            {
+                CompressionTechniques.LZMA.Decompress(fileStream, decompressedStream);
+            }
+
+            decompressedStream.Position = 0;
+
+            return File(decompressedStream, "application/octet-stream", file.FileName);
         }
 
         [HttpGet]
@@ -214,6 +233,8 @@ namespace Epam_FinalProject_FileManager.Controllers
         [HttpPost]
         public ContentResult UploadFiles()
         {
+            FileStream fileStream = null;
+
             try
             {
                 var r = new List<UploadFileResult>();
@@ -221,13 +242,17 @@ namespace Epam_FinalProject_FileManager.Controllers
                 foreach (string fileName in Request.Files)
                 {
                     HttpPostedFileBase hpf = Request.Files[fileName] as HttpPostedFileBase;
-                    if (hpf != null && hpf.ContentLength != 0)
+
+                    fileStream = new FileStream(@"compressed.lzma", FileMode.Create);
+                    CompressionTechniques.LZMA.Compress(hpf.InputStream, fileStream);
+
+                    if (fileStream != null && fileStream.Length != 0)
                     {
                         FileInfo fileInfo = new FileInfo(hpf.FileName);
                         Guid fileId = Guid.NewGuid();
 
                         string userFilesPath = Server.MapPath("~/App_Data/UserFiles/");
-                        
+
                         if (!Directory.Exists(Path.Combine(userFilesPath, USERID)))
                         {
                             Directory.CreateDirectory(Path.Combine(userFilesPath, USERID));
@@ -258,7 +283,12 @@ namespace Epam_FinalProject_FileManager.Controllers
                         string tempCatalogPath = Server.MapPath("~/App_Data/UserFiles/Temp");
                         string tempFilePath = Path.Combine(tempCatalogPath, hpf.FileName);
 
-                        hpf.SaveAs(tempFilePath);
+                        using (var tmpStream = System.IO.File.Create(tempFilePath))
+                        {
+                            fileStream.Position = 0;
+                            fileStream.CopyTo(tmpStream);
+                        }
+
                         string fileHash = fileService.CalculateMD5Hash(tempFilePath);
 
                         FileEntityDTO newFile = new FileEntityDTO()
@@ -266,7 +296,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                             Id = fileId,
                             FileName = fileInfo.Name,
                             FileExtention = fileInfo.Extension,
-                            Size = hpf.ContentLength,
+                            Size = fileStream.Length,
                             FilePath = endFilePath,
                             Hash = fileHash,
                             UploadDate = DateTime.Now,
@@ -286,9 +316,9 @@ namespace Epam_FinalProject_FileManager.Controllers
                         {
                             try
                             {
-                                        System.IO.File.Move(tempFilePath, endFilePath);
-                                        fileService.AddFileToUser(newFile, USERID);
-                                        r.Add(new UploadFileResult() { Name = fileInfo.Name, Status = true, Message = "Uploaded" });
+                                System.IO.File.Move(tempFilePath, endFilePath);
+                                fileService.AddFileToUser(newFile, USERID);
+                                r.Add(new UploadFileResult() { Name = fileInfo.Name, Status = true, Message = "Uploaded" });
                                 isRetrying = false;
                             }
                             catch (IOException)
@@ -311,6 +341,10 @@ namespace Epam_FinalProject_FileManager.Controllers
             catch (HttpException)
             {
                 return Content("{\"name\":\"\",\"status\":\"false\",\"message\":\"Превишен максимальный размер файла\"}", "application/json");
+            }
+            finally
+            {
+                fileStream.Close();
             }
             return Content("{\"name\":\"\", \"status\":\"false\",\"message\":\"Неизвестная ошибка\"}", "application/json");
         }
