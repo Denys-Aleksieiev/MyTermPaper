@@ -296,7 +296,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                             Id = fileId,
                             FileName = fileInfo.Name,
                             FileExtention = fileInfo.Extension,
-                            Size = fileStream.Length,
+                            Size = hpf.ContentLength,
                             FilePath = endFilePath,
                             Hash = fileHash,
                             UploadDate = DateTime.Now,

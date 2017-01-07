@@ -20,3 +20,4 @@ C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOc
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager_DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager_DAL\obj\Debug\Epam_FinalProject_FileManager_DAL.dll
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager_DAL\obj\Debug\Epam_FinalProject_FileManager_DAL.pdb
+C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager_DAL\obj\Debug\FileManager_FileOcean_DAL.csprojResolveAssemblyReference.cache
