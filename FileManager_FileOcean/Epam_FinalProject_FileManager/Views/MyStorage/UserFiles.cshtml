@@ -139,8 +139,14 @@
                     </table>
                 </div>
                 <div class="modal-footer">
+                        <label class="col-md-5" >Uploading compression</label>
+                        <select class="col-md-3" id="compressionSelect">
+                            <option value="0">None</option>
+                            <option value="1">Average</option>
+                            <option value="2">High</option>
+                        </select>
                     <span class="btn btn-primary fileinput-button">
-                        <span>Add files...</span>
+                        <span>Upload...</span>
                         <input id="@ViewBag.ScriptId" type="file" name="files[]" multiple />
                     </span>
                     <button id="uploadAbort" type="button" class="btn btn-success" data-dismiss="modal">Done</button>

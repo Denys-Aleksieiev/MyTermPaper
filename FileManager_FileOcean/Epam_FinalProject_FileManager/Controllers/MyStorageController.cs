@@ -24,6 +24,14 @@ namespace Epam_FinalProject_FileManager.Controllers
         {
             fileService = fileS;
             userService = userS;
+
+
+            ViewBag.Compressions = new SelectList(new List<SelectListItem>
+                                    {
+                                        new SelectListItem { Text = "None", Value = "0" },
+                                        new SelectListItem { Text = "Average", Value = "1"},
+                                        new SelectListItem { Text = "High", Value = "2"}
+                                    }, "Value", "Text");
         }
 
         public ActionResult UFiles(string sortOrder, Func<string, IEnumerable<FileEntityDTO>> func, int? page = null, string searchString = null)
@@ -106,7 +114,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                     UserStorageSize = userStorageSize,
                     PageSize = pageSize
                 };
-                return View("UserFiles",defaultResult);
+                return View("UserFiles", defaultResult);
             }
         }
 
@@ -191,7 +199,7 @@ namespace Epam_FinalProject_FileManager.Controllers
             double percents = (filesSize * 1.0) / userStorageSize * 100;
             string percentString = percents.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
 
-           
+
             string occupiedSize = Evaluate(filesSize);
             string totalSize = Evaluate(userStorageSize);
 
@@ -213,8 +221,18 @@ namespace Epam_FinalProject_FileManager.Controllers
         }
 
         [HttpPost]
+        public ActionResult SetCompression(string selectedCompression)
+        {
+            // Set to Session here.
+            Session["selectedCompression"] = selectedCompression;
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+        }
+
+        [HttpPost]
         public ContentResult UploadFiles()
         {
+            Stream fileStream = null;
+
             try
             {
                 var r = new List<UploadFileResult>();
@@ -222,7 +240,25 @@ namespace Epam_FinalProject_FileManager.Controllers
                 foreach (string fileName in Request.Files)
                 {
                     HttpPostedFileBase hpf = Request.Files[fileName] as HttpPostedFileBase;
-                    if (hpf != null && hpf.ContentLength != 0)
+
+                    var compressionOption = (string)Session["selectedCompression"];
+
+                    if (compressionOption == "0")
+                    {
+                        fileStream = hpf.InputStream;
+
+                    }
+                    else if (compressionOption == "1")
+                    {
+                        fileStream = hpf.InputStream;
+                    }
+                    else if (compressionOption == "2")
+                    {
+                        fileStream = new FileStream(@"compressed.lzma", FileMode.Create);
+                        CompressionTechniques.LZMA.Compress(hpf.InputStream, fileStream);
+                    }
+
+                    if (fileStream != null && fileStream.Length != 0)
                     {
                         FileInfo fileInfo = new FileInfo(hpf.FileName);
                         Guid fileId = Guid.NewGuid();
@@ -233,7 +269,12 @@ namespace Epam_FinalProject_FileManager.Controllers
                         string tempCatalogPath = Server.MapPath("~/App_Data/UserFiles/Temp");
                         string tempFilePath = Path.Combine(tempCatalogPath, hpf.FileName);
 
-                        hpf.SaveAs(tempFilePath);
+                        using (var tmpStream = System.IO.File.Create(tempFilePath))
+                        {
+                            fileStream.Position = 0;
+                            fileStream.CopyTo(tmpStream);
+                        }
+
                         string fileHash = fileService.CalculateMD5Hash(tempFilePath);
 
                         FileEntityDTO newFile = new FileEntityDTO()
@@ -241,7 +282,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                             Id = fileId,
                             FileName = fileInfo.Name,
                             FileExtention = fileInfo.Extension,
-                            Size = hpf.ContentLength,
+                            Size = fileStream.Length,
                             FilePath = endFilePath,
                             Hash = fileHash,
                             UploadDate = DateTime.Now
@@ -261,7 +302,8 @@ namespace Epam_FinalProject_FileManager.Controllers
                             {
                                 try
                                 {
-                                        if (userService.GetUserFreeSpace(userId) > hpf.ContentLength)
+                                    long space = userService.GetUserFreeSpace(userId);
+                                    if (space > fileStream.Length)
                                     {
                                         System.IO.File.Move(tempFilePath, endFilePath);
                                         fileService.AddFileToUser(newFile, userId);
@@ -279,7 +321,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                                         {
                                             Name = fileInfo.Name,
                                             Status = false,
-                                            Message = "Недостаточно памяти"
+                                            Message = "Not enough memory"
                                         });
                                     }
                                 }
@@ -310,16 +352,23 @@ namespace Epam_FinalProject_FileManager.Controllers
             {
                 return Content("{\"name\":\"\",\"status\":\"false\",\"message\":\"Превишен максимальный размер файла\"}", "application/json");
             }
+            finally
+            {
+                if (fileStream != null)
+                {
+                    fileStream.Close();
+                }
+            }
             return Content("{\"name\":\"\", \"status\":\"false\",\"message\":\"Неизвестная ошибка\"}", "application/json");
         }
 
-        public ActionResult MyAudio(string path,string userid, string name)
+        public ActionResult MyAudio(string path, string userid, string name)
         {
             var file = Server.MapPath("~/App_Data/UserFiles/" + userid + "/" + name);
             return File(file, "audio/mp3");
         }
 
-        public ActionResult MyVideo(string path, string userid, string name,string extension)
+        public ActionResult MyVideo(string path, string userid, string name, string extension)
         {
             string file = String.Empty;
             if (extension == ".mp4")
@@ -334,7 +383,7 @@ namespace Epam_FinalProject_FileManager.Controllers
             }
             else if (extension == ".ogg")
             {
-                 file = Server.MapPath("~/App_Data/UserFiles/" + userid + "/" + name);
+                file = Server.MapPath("~/App_Data/UserFiles/" + userid + "/" + name);
                 return File(file, "video/ogg");
             }
 
@@ -352,11 +401,11 @@ namespace Epam_FinalProject_FileManager.Controllers
             return File(file, System.Net.Mime.MediaTypeNames.Application.Pdf, name);
         }
 
-        public new FileContentResult File(string path,string extension)
+        public new FileContentResult File(string path, string extension)
         {
             var fileContents = System.IO.File.ReadAllBytes(path);
             var mimeType = "application/pdf";
-            if(extension == ".docx")
+            if (extension == ".docx")
                 return new FileContentResult(fileContents, "documentfile.docx");
 
             return new FileContentResult(fileContents, mimeType);

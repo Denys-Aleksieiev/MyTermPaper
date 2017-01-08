@@ -344,7 +344,10 @@ namespace Epam_FinalProject_FileManager.Controllers
             }
             finally
             {
-                fileStream.Close();
+                if (fileStream != null)
+                {
+                    fileStream.Close();
+                }
             }
             return Content("{\"name\":\"\", \"status\":\"false\",\"message\":\"Неизвестная ошибка\"}", "application/json");
         }
