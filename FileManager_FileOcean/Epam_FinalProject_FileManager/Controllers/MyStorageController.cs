@@ -121,7 +121,7 @@ namespace Epam_FinalProject_FileManager.Controllers
         [HttpGet]
         public ActionResult UserFiles(string sortOrder, string searchString = null, int? page = null)
         {
-            ViewBag.PageTitle = "Personal storage";
+            ViewBag.FilterBy = "Nothing";
             ViewBag.ScriptId = "fileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserFiles, page, searchString);
         }
@@ -129,21 +129,21 @@ namespace Epam_FinalProject_FileManager.Controllers
         [HttpGet]
         public ActionResult UserDocumentFiles(string sortOrder, int? page = null, string searchString = null)
         {
-            ViewBag.PageTitle = "Personal storage: documents";
+            ViewBag.FilterBy = "Documents";
             ViewBag.ScriptId = "documentFileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserDocuments, page, searchString);
         }
         [HttpGet]
         public ActionResult UserAudioFiles(string sortOrder, int? page = null, string searchString = null)
         {
-            ViewBag.PageTitle = "Personal storage: audios";
+            ViewBag.FilterBy = "Audio";
             ViewBag.ScriptId = "audioFileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserAudios, page, searchString);
         }
         [HttpGet]
         public ActionResult UserVideoFiles(string sortOrder, int? page = null, string searchString = null)
         {
-            ViewBag.PageTitle = "Personal storage: videos";
+            ViewBag.FilterBy = "Videos";
             ViewBag.ScriptId = "videoFileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserVideos, page, searchString);
         }

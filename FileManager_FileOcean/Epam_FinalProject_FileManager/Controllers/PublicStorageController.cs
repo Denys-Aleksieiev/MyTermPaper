@@ -57,7 +57,7 @@ namespace Epam_FinalProject_FileManager.Controllers
 
                 return RedirectToAction("Index");
             }
-            ViewBag.PageTitle = "Public storage";
+            ViewBag.FilterBy = "Nothing";
             ViewBag.ScriptId = "fileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserFiles, page, searchString);
         }
@@ -69,7 +69,7 @@ namespace Epam_FinalProject_FileManager.Controllers
             {
                 return RedirectToAction("Index");
             }
-            ViewBag.PageTitle = "Public storage: documents";
+            ViewBag.FilterBy = "Documents";
             ViewBag.ScriptId = "documentFileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserDocuments, page, searchString);
         }
@@ -82,7 +82,7 @@ namespace Epam_FinalProject_FileManager.Controllers
             {
                 return RedirectToAction("Index");
             }
-            ViewBag.PageTitle = "Public storage: audios";
+            ViewBag.FilterBy = "Audio";
             ViewBag.ScriptId = "audioFileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserAudios, page, searchString);
         }
@@ -94,7 +94,7 @@ namespace Epam_FinalProject_FileManager.Controllers
             {
                 return RedirectToAction("Index");
             }
-            ViewBag.PageTitle = "Public storage: videos";
+            ViewBag.FilterBy = "Videos";
             ViewBag.ScriptId = "videoFileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserVideos, page, searchString);
         }

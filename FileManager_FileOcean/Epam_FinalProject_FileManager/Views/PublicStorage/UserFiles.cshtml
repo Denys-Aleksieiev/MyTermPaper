@@ -1,9 +1,6 @@
 ﻿@model Epam_FinalProject_FileManager.Models.PublicFileViewModel
 @using PagedList;
 
-@{
-    ViewBag.Title = "UserFiles";
-}
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryfileupload2")
@@ -13,9 +10,7 @@
     @Styles.Render("~/Content/jqueryfileupload")
 }
 <div class="container">
-    <h3>@ViewBag.PageTitle</h3>
-    <div class="row">
-    </div>
+    <br />
     <br />
     <div>
         <div class="row">
@@ -41,7 +36,7 @@
         <div class="row">
             <div class="col-md-2 list-group">
                 <a href="#" class="list-group-item active">
-                    Filter by:
+                    Filter by: @ViewBag.FilterBy
                 </a>
                 <a class="list-group-item" href="@Url.Action("UserFiles", "PublicStorage")">Nothing</a>
                 <a class="list-group-item" href="@Url.Action("UserDocumentFiles", "PublicStorage")">Documents</a>
