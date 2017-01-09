@@ -19,7 +19,7 @@ namespace Epam_FinalProject_FileManager.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private long DefaultUserStorageSize = 50073741824;
+        private long DefaultUserStorageSize = 53689741824;
 
         public AccountController()
         {

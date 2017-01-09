@@ -156,9 +156,12 @@ namespace Epam_FinalProject_FileManager.Controllers
 
             if (file.Compression == "1")
             {
-                outStream = new FileStream(file.FilePath, FileMode.Open);
+                using (var inStream = new FileStream(file.FilePath, FileMode.Open))
+                {
+                    outStream = CompressionTechniques.DEFLATE.DEFLATECompressor.Decompress(inStream);
+                }
             }
-            else if(file.Compression == "2")
+            else if (file.Compression == "2")
             {
                 using (var inStream = new FileStream(file.FilePath, FileMode.Open))
                 {
@@ -166,7 +169,8 @@ namespace Epam_FinalProject_FileManager.Controllers
                     CompressionTechniques.LZMA.Decompress(inStream, outStream);
                 }
                 outStream.Position = 0;
-            }else
+            }
+            else
             {
                 outStream = new FileStream(file.FilePath, FileMode.Open);
             }
@@ -181,7 +185,10 @@ namespace Epam_FinalProject_FileManager.Controllers
 
             if (file.Compression == "1")
             {
-                outStream = new FileStream(file.FilePath, FileMode.Open);
+                using (var inStream = new FileStream(file.FilePath, FileMode.Open))
+                {
+                    outStream = CompressionTechniques.DEFLATE.DEFLATECompressor.Decompress(inStream);
+                }
             }
             else if (file.Compression == "2")
             {
@@ -287,7 +294,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                     }
                     else if (compressionOption == "1")
                     {
-                        fileStream = hpf.InputStream;
+                        fileStream = CompressionTechniques.DEFLATE.DEFLATECompressor.Compress(hpf.InputStream);
                     }
                     else if (compressionOption == "2")
                     {

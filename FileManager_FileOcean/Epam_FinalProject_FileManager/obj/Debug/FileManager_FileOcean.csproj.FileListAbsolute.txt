@@ -292,5 +292,5 @@ C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOc
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager\obj\Debug\FileManager_FileOcean.csprojResolveAssemblyReference.cache
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager\obj\Debug\Epam_FinalProject_FileManager.dll
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager\obj\Debug\Epam_FinalProject_FileManager.pdb
-C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager\bin\SevenZip.dll
-C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager\bin\SevenZip.pdb
+C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager\bin\CompressionTechniques.dll
+C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\Epam_FinalProject_FileManager\bin\CompressionTechniques.pdb

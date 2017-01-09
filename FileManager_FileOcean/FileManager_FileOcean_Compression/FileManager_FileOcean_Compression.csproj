@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>SevenZip</RootNamespace>
-    <AssemblyName>SevenZip</AssemblyName>
+    <RootNamespace>CompressionTechniques</RootNamespace>
+    <AssemblyName>CompressionTechniques</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DEFLATE\DeflateCompressor.cs" />
     <Compile Include="LZMA\Common\CommandLineParser.cs" />
     <Compile Include="LZMA\Common\CRC.cs" />
     <Compile Include="LZMA\Common\InBuffer.cs" />
