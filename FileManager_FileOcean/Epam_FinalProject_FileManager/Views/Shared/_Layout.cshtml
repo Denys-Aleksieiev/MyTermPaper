@@ -7,6 +7,7 @@
     <link href="~/Content/images/favicon.png" type="image/png" rel="shortcut icon" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("Styles", false)
 
@@ -16,7 +17,6 @@
             margin: 0 9px;
             border-right: 1px solid #99CCFF;
             border-left: 1px solid #99CCFF;
-            /*99CCFF*/
         }
 
         .navbar-inverse .divider-vertical {
@@ -25,6 +25,26 @@
         }
     </style>
 
+    <script>
+        $(document).ready(function () {
+            $.each($('.nav').find('li'), function () {
+
+                if ($(this).find('a').attr('href') == window.location.pathname) {
+
+                    $.each($('.nav').find('li'), function () {
+                        $(this).removeClass('active');
+                    });
+
+                    sessionStorage["activeTab"] = $(this).find('a').attr('href');
+                    $(this).toggleClass('active');
+                } else {
+                    if ($(this).find('a').attr('href') == sessionStorage["activeTab"]) {
+                        $(this).toggleClass('active');
+                    }
+                }
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -41,7 +61,7 @@
             </div>
 
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul id="navbar" class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><span class='glyphicon glyphicon-home'></span> Home</a></li>
                     <li><a href="@Url.Action("UserFiles", "MyStorage")"><span class='glyphicon glyphicon-briefcase'></span> Personal storage</a></li>
                     <li><a href="@Url.Action("UserFiles", "PublicStorage")"><span class='glyphicon glyphicon-folder-open'></span> Public storage</a></li>
