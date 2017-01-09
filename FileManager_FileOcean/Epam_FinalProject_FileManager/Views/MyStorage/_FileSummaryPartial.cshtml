@@ -39,6 +39,18 @@
     <td class="text-center">
         @Model.Size.ToFileSize()
     </td>
+    <td class="text-center">
+        @if(Model.Compression == "0")
+        {
+            <span>Absent</span>
+        }else if(Model.Compression == "1")
+        {
+            <span>Average</span>
+        }else if(Model.Compression == "2")
+        {
+            <span>High (LZMA)</span>
+        }
+    </td>
     <td>
         <a href="@Url.Action("Download", "MyStorage", new {fileId = @Model.Id})" class="btn btn-success btn-sm" title="Download" role="button">
             <span class="glyphicon glyphicon-download-alt"></span>
