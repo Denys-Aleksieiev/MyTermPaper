@@ -1378,6 +1378,17 @@ namespace CompressionTechniques.Compression.LZMA
                             _numFastBytes = (UInt32)numFastBytes;
                             break;
                         }
+                    case CoderPropID.Algorithm:
+                        {
+                            /*
+                            if (!(prop is Int32))
+                                throw new InvalidParamException();
+                            Int32 maximize = (Int32)prop;
+                            _fastMode = (maximize == 0);
+                            _maxMode = (maximize >= 2);
+                            */
+                            break;
+                        }
                     case CoderPropID.MatchFinder:
                         {
                             if (!(prop is String))

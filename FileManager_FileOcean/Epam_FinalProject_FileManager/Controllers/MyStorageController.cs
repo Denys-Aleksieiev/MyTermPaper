@@ -243,7 +243,7 @@ namespace Epam_FinalProject_FileManager.Controllers
 
                     var compressionOption = (string)Session["selectedCompression"];
 
-                    if (compressionOption == "0")
+                    if ((compressionOption == null) || (compressionOption == "0"))
                     {
                         fileStream = hpf.InputStream;
 
@@ -285,7 +285,8 @@ namespace Epam_FinalProject_FileManager.Controllers
                             Size = fileStream.Length,
                             FilePath = endFilePath,
                             Hash = fileHash,
-                            UploadDate = DateTime.Now
+                            UploadDate = DateTime.Now,
+                            Compression = compressionOption
                         };
 
                         //Sometimes when user uploads large files

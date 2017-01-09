@@ -68,7 +68,6 @@ C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.dll
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\Epam_FinalProject_FileManager\UnitTests\obj\Debug\UnitTests.pdb
-C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\UnitTests\bin\Debug\AutoMapper.Net4.dll
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\UnitTests\bin\Debug\UnitTests.dll.config
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\UnitTests\bin\Debug\UnitTests.dll
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\UnitTests\bin\Debug\UnitTests.pdb
@@ -91,3 +90,4 @@ C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOc
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\UnitTests\obj\Debug\UnitTests.dll
 C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\UnitTests\obj\Debug\UnitTests.pdb
+C:\Users\Denys Aleksieiev\Desktop\Diploma project\MyTermPaper\FileManager_FileOcean\UnitTests\bin\Debug\AutoMapper.Net4.dll
