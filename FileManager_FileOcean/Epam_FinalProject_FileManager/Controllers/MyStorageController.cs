@@ -152,14 +152,51 @@ namespace Epam_FinalProject_FileManager.Controllers
         public FileStreamResult Download(string fileId)
         {
             var file = fileService.GetFileById(fileId);
-            return File(new FileStream(file.FilePath, FileMode.Open), "application/octet-stream", file.FileName);
+            Stream outStream = null;
+
+            if (file.Compression == "1")
+            {
+                outStream = new FileStream(file.FilePath, FileMode.Open);
+            }
+            else if(file.Compression == "2")
+            {
+                using (var inStream = new FileStream(file.FilePath, FileMode.Open))
+                {
+                    outStream = new FileStream(@"compressed.lzma", FileMode.Open);
+                    CompressionTechniques.LZMA.Decompress(inStream, outStream);
+                }
+                outStream.Position = 0;
+            }else
+            {
+                outStream = new FileStream(file.FilePath, FileMode.Open);
+            }
+            return File(outStream, "application/octet-stream", file.FileName);
         }
         [HttpGet]
         [AllowAnonymous]
         public FileStreamResult DownloadPublic(string shareLink)
         {
             var file = fileService.GetFileByShareLink(shareLink);
-            return File(new FileStream(file.FilePath, FileMode.Open), "application/octet-stream", file.FileName);
+            Stream outStream = null;
+
+            if (file.Compression == "1")
+            {
+                outStream = new FileStream(file.FilePath, FileMode.Open);
+            }
+            else if (file.Compression == "2")
+            {
+                using (var inStream = new FileStream(file.FilePath, FileMode.Open))
+                {
+                    outStream = new FileStream(@"compressed.lzma", FileMode.Open);
+                    CompressionTechniques.LZMA.Decompress(inStream, outStream);
+                }
+                outStream.Position = 0;
+            }
+            else
+            {
+                outStream = new FileStream(file.FilePath, FileMode.Open);
+            }
+            return File(outStream, "application/octet-stream", file.FileName);
         }
 
         [HttpGet]
@@ -396,7 +433,6 @@ namespace Epam_FinalProject_FileManager.Controllers
         {
             // Force the pdf document to be displayed in the browser
             Response.AppendHeader("Content-Disposition", "inline; filename=" + name + ";");
-
 
             string file = Server.MapPath("~/App_Data/UserFiles/" + userid + "/" + name);
             return File(file, System.Net.Mime.MediaTypeNames.Application.Pdf, name);
