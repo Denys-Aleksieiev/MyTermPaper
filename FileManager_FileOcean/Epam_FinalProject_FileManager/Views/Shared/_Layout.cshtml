@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Content/images/favicon.png" type="image/png" rel="shortcut icon" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -18,6 +18,7 @@
             border-left: 1px solid #99CCFF;
             /*99CCFF*/
         }
+
         .navbar-inverse .divider-vertical {
             border-right-color: #222222;
             border-left-color: #111111;
@@ -31,39 +32,23 @@
         <div class="container">
 
             <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <b> @Html.ActionLink("File Ocean", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</b>
             </div>
-            
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li class="divider-vertical"></li>*@
                     <li><a href="@Url.Action("Index", "Home")"><span class='glyphicon glyphicon-home'></span> Home</a></li>
-                    <li class="dropdown"><a href="@Url.Action("UserFiles", "MyStorage")" class="dropdown-toggle" data-toggle="dropdown"><span class='glyphicon glyphicon-briefcase'></span> Personal storage<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="@Url.Action("UserFiles", "MyStorage")">All types</a></li>
-                            <li><a href="@Url.Action("UserDocumentFiles", "MyStorage")">Only documents</a></li>
-                            <li><a href="@Url.Action("UserAudioFiles", "MyStorage")">Only audios</a></li>
-                            <li><a href="@Url.Action("UserVideoFiles", "MyStorage")">Only videos</a></li>
-                            <li class="divider"></li>
-                            <li><a href="@Url.Action("MyStatistics", "Statistics")">File statistics</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="@Url.Action("UserFiles", "PublicStorage")" class="dropdown-toggle" data-toggle="dropdown"><span class='glyphicon glyphicon-folder-open'></span> Public storage<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="@Url.Action("UserFiles", "PublicStorage")">All types</a></li>
-                            <li><a href="@Url.Action("UserDocumentFiles", "PublicStorage")">Only documents</a></li>
-                            <li><a href="@Url.Action("UserAudioFiles", "PublicStorage")">Only audios</a></li>
-                            <li><a href="@Url.Action("UserVideoFiles", "PublicStorage")">Only videos</a></li>
-                            <li class="divider"></li>
-                            <li><a href="@Url.Action("PublicStatistics", "Statistics")">File statistics</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="@Url.Action("UserFiles", "MyStorage")"><span class='glyphicon glyphicon-briefcase'></span> Personal storage</a></li>
+                    <li><a href="@Url.Action("UserFiles", "PublicStorage")"><span class='glyphicon glyphicon-folder-open'></span> Public storage</a></li>
                     <li><a href="@Url.Action("About", "Home")"><span class='glyphicon glyphicon-info-sign'></span> About</a></li>
+
+                    @*<li><a href="@Url.Action("MyStatistics", "Statistics")">File statistics</a></li>*@
+                    @*<li><a href="@Url.Action("PublicStatistics", "Statistics")">File statistics</a></li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -71,7 +56,7 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr/>
+        <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - File Ocean inc. All rights reserved.</p>
         </footer>

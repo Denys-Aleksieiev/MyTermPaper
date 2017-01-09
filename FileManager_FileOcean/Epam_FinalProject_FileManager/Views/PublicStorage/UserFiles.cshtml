@@ -19,7 +19,7 @@
     <br />
     <div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 col-md-offset-2">
                 <button type="button" class="btn btn-primary" onclick="UploadFilesModal(); return false;">
                     <span class="glyphicon glyphicon-upload"></span> Upload files
                 </button>
@@ -39,11 +39,20 @@
             <br />
         </div>
         <div class="row">
+            <div class="col-md-2 list-group">
+                <a href="#" class="list-group-item active">
+                    Filter by:
+                </a>
+                <a class="list-group-item" href="@Url.Action("UserFiles", "PublicStorage")">Nothing</a>
+                <a class="list-group-item" href="@Url.Action("UserDocumentFiles", "PublicStorage")">Documents</a>
+                <a class="list-group-item" href="@Url.Action("UserAudioFiles", "PublicStorage")">Audio</a>
+                <a class="list-group-item" href="@Url.Action("UserVideoFiles", "PublicStorage")">Video</a>
+            </div>
             <div class="col-md-9">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="col-md-6">
+                            <th class="col-md-4">
                                 <span id="columnNameHead" class="cursor-pointer">
                                     Title <span><span class="caret"></span></span>
                                 </span>
