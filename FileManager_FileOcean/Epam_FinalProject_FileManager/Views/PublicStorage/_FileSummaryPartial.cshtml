@@ -15,11 +15,18 @@
         @Model.Size.ToFileSize()
     </td>
     <td>
-        <a href="@Url.Action("Download", "PublicStorage", new {fileId = @Model.Id})" class="btn btn-success btn-sm" title="Download" role="button">
-            <span class="glyphicon glyphicon-download-alt"></span>
-        </a>
-        <button class="btn @(Model.ShareLink == null ? "btn-default" : "btn-success") btn-sm btn-info" title="Share" onclick="ShareFile(this);">
-            <span class="glyphicon glyphicon-share"></span>
-        </button>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" title="Options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-option-horizontal"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="@Url.Action("Download", "PublicStorage", new {fileId = @Model.Id})">Download</a>
+                </li>
+                <li>
+                    <a onclick="ShareFile(this);">Share</a>
+                </li>
+            </ul>
+        </div>
     </td>
 </tr>

@@ -128,9 +128,7 @@ function ConfirmDelete(element) {
 }
 function ShareFile(element) {
     var el = $(element);
-    var id = el.parent().parent().prop('id');
-    el.removeClass('btn-default');
-    el.addClass('btn-success');
+    var id = el.parent().parent().parent().parent().parent().prop('id');
     GetShareLinkRequest(id);
     currentFileId = id;
     $('#fileSharingModal').modal('show');
