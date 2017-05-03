@@ -29,5 +29,6 @@ namespace Epam_FinalProject_FileManager_BLL.DTO
         public bool IsDocument { get; set; }
         public virtual ApplicationUser Owner { get; set; }
         public string AnonimOwner { get; set; }
+        public string Compression { get; set; }
     }
 }

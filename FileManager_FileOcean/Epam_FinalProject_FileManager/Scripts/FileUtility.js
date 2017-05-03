@@ -46,6 +46,15 @@
         }
     });
 
+    $("#compressionSelect").change(function () {
+        // This is the jQuery way of finding selected option's text
+        var myVar = $(this).find("option:selected").val();
+        // Post the value to your server. You should do some error handling here
+        $.post("/MyStorage/SetCompression", {
+            selectedCompression: myVar
+        });
+    });
+
     $('#documentFileUploadButton').fileupload({
         dataType: 'json',
         autoUpload: true,
