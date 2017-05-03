@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Epam_FinalProject_FileManager_DAL.Interfaces;
 
 namespace Epam_FinalProject_FileManager_DAL.Repositories

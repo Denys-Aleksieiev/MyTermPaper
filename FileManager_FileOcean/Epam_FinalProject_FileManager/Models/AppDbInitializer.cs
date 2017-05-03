@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Epam_FinalProject_FileManager.Models
 {
-    internal class AppDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    internal class AppDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
@@ -25,7 +25,7 @@ namespace Epam_FinalProject_FileManager.Models
             var admin = new ApplicationUser {Email = "somemail@mail.ru", UserName = "somemail@mail.ru"};
             admin.UserStorageSize = 50073741824;
             string password = "111111b";
-            string userFilesPath =  @"C:\Users\Denys\Documents\Visual Studio 2015\Projects\Epam_FinalProject_FileManager\Epam_FinalProject_FileManager" + "/App_Data/UserFiles/";
+            string userFilesPath = System.AppDomain.CurrentDomain.BaseDirectory + "App_Data\\UserFiles\\";
             if (!Directory.Exists(userFilesPath + admin.Id + "/"))
             {
                 Directory.CreateDirectory(userFilesPath + admin.Id + "/");

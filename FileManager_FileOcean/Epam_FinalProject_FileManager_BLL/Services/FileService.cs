@@ -1,12 +1,9 @@
 ﻿using Epam_FinalProject_FileManager_BLL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using Epam_FinalProject_FileManager_BLL.DTO;
 using Epam_FinalProject_FileManager_DAL;

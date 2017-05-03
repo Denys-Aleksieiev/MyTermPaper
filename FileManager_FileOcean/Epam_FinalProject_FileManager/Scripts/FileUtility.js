@@ -231,11 +231,6 @@
         currenActiveSortId = elemId;
         UpdateFilesRequest();
     });
-
-    $('#accessByLinkSelect').selectpicker({
-        style: 'btn-default'
-    });
-
 });
 
 var currentFileId;

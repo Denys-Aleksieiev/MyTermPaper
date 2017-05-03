@@ -121,7 +121,7 @@ namespace Epam_FinalProject_FileManager.Controllers
         [HttpGet]
         public ActionResult UserFiles(string sortOrder, string searchString = null, int? page = null)
         {
-            ViewBag.FilterBy = "Nothing";
+            ViewBag.FilterBy = "Default";
             ViewBag.ScriptId = "fileUploadButton";
             return UFiles(sortOrder, fileService.GetAllUserFiles, page, searchString);
         }
