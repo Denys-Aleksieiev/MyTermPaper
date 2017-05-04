@@ -36,19 +36,19 @@
     <td class="text-center">
         @Model.UploadDate.Humanize(utcDate: false, culture: System.Globalization.CultureInfo.GetCultureInfo("en-GB"))
     </td>
-    <td class="text-center">
+    <td class="text-center updateSize">
         @Model.Size.ToFileSize()
     </td>
-    <td class="text-center">
-        @if (Model.Compression == "0")
+    <td class="text-center updateCompression">
+        @if (Model.Compression == "")
         {
-            <span>Absent</span>
+            <span></span>
         }
-        else if (Model.Compression == "1")
+        else if (Model.Compression == "Deflate")
         {
             <span>Average (Deflate)</span>
         }
-        else if (Model.Compression == "2")
+        else if (Model.Compression == "LZMA")
         {
             <span>High (LZMA)</span>
         }
@@ -64,6 +64,9 @@
                 </li>
                 <li>
                     <a onclick="ShareFile(this);">Share</a>
+                </li>
+                <li>
+                    <a onclick="CompressFile(this);">Compression</a>
                 </li>
                 <li>
                     <a onclick="ConfirmDelete(this);">Delete</a>

@@ -158,6 +158,14 @@ namespace Epam_FinalProject_FileManager_BLL.Services
             }
             return isDbFileDeleted && isFileDeleted;
         }
+
+        public bool UpdateFile(FileEntityDTO file)
+        {
+            Mapper.CreateMap<FileEntityDTO, FileEntity>();
+            var fileEntity = Mapper.Map<FileEntityDTO, FileEntity>(file);
+            return _database.Files.UpdateFile(fileEntity);
+        }
+
         public bool IsUserHasFile(string fileId, string userId)
         {
             return _database.Files.GetFileById(fileId).Owner.Id == userId;

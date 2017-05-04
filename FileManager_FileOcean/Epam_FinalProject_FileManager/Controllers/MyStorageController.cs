@@ -154,14 +154,14 @@ namespace Epam_FinalProject_FileManager.Controllers
             var file = fileService.GetFileById(fileId);
             Stream outStream = null;
 
-            if (file.Compression == "1")
+            if (file.Compression == "Deflate")
             {
                 using (var inStream = new FileStream(file.FilePath, FileMode.Open))
                 {
                     outStream = CompressionTechniques.DEFLATE.DEFLATECompressor.Decompress(inStream);
                 }
             }
-            else if (file.Compression == "2")
+            else if (file.Compression == "LZMA")
             {
                 using (var inStream = new FileStream(file.FilePath, FileMode.Open))
                 {
@@ -176,6 +176,154 @@ namespace Epam_FinalProject_FileManager.Controllers
             }
             return File(outStream, "application/octet-stream", file.FileName);
         }
+
+        [HttpPost]
+        public ActionResult Decompress()
+        {
+            Guid fileId = (Guid)Session["currentFileId"];
+            var file = fileService.GetFileById(fileId.ToString());
+
+            if (file.Compression == string.Empty)
+            {
+                var result = new
+                {
+                    Id = file.Id,
+                    FileName = file.FileName,
+                    Size = file.Size.ToFileSize(),
+                    Compression = file.Compression
+                };
+
+                return Json(result);
+            }
+            else
+            {
+                Stream outStream = null;
+                try
+                {
+                    if (file.Compression == "Deflate")
+                    {
+                        using (var inStream = new FileStream(file.FilePath, FileMode.Open))
+                        {
+                            outStream = CompressionTechniques.DEFLATE.DEFLATECompressor.Decompress(inStream);
+                        }
+                    }
+                    else if (file.Compression == "LZMA")
+                    {
+                        using (var inStream = new FileStream(file.FilePath, FileMode.Open))
+                        {
+                            outStream = new FileStream(@"compressed.lzma", FileMode.OpenOrCreate);
+                            CompressionTechniques.LZMA.Decompress(inStream, outStream);
+                        }
+                        outStream.Position = 0;
+                    }
+
+                    file.Compression = string.Empty;
+                    file.Size = outStream.Length;
+                    fileService.UpdateFile(file);
+                    System.IO.File.Delete(file.FilePath);
+
+                    using (var tmpStream = System.IO.File.Create(file.FilePath))
+                    {
+                        outStream.Position = 0;
+                        outStream.CopyTo(tmpStream);
+                        outStream.Dispose();
+                    }
+
+                    var result = new
+                    {
+                        Id = file.Id,
+                        FileName = file.FileName,
+                        Size = file.Size.ToFileSize(),
+                        Compression = file.Compression,
+                        UploadDate = file.UploadDate,
+                    };
+
+                return Json(result);
+                }
+                finally
+                {
+                    if (outStream != null)
+                    {
+                        outStream.Dispose();
+                    }
+                }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Compress(string strategy)
+        {
+            Guid fileId = (Guid)Session["currentFileId"];
+            var file = fileService.GetFileById(fileId.ToString());
+
+            Stream outStream = null;
+            try
+            {
+                if (strategy == "Deflate")
+                {
+                    using (var inStream = new FileStream(file.FilePath, FileMode.Open))
+                    {
+                        outStream = CompressionTechniques.DEFLATE.DEFLATECompressor.Compress(inStream);
+                    }
+                }
+                else if (strategy == "LZMA")
+                {
+                    using (var inStream = new FileStream(file.FilePath, FileMode.Open))
+                    {
+                        outStream = new FileStream(@"compressed.lzma", FileMode.Create);
+                        CompressionTechniques.LZMA.Compress(inStream, outStream);
+                    }
+                    outStream.Position = 0;
+                }
+
+                file.Compression = strategy;
+                file.Size = outStream.Length;
+                fileService.UpdateFile(file);
+                System.IO.File.Delete(file.FilePath);
+
+                using (var tmpStream = System.IO.File.Create(file.FilePath))
+                {
+                    outStream.Position = 0;
+                    outStream.CopyTo(tmpStream);
+                }
+
+                var result = new
+                {
+                    Id = file.Id,
+                    FileName = file.FileName,
+                    Size = file.Size.ToFileSize(),
+                    Compression = file.Compression,
+                    UploadDate = file.UploadDate,
+                };
+
+            return Json(result);
+            }
+            finally
+            {
+                if (outStream != null)
+                {
+                    outStream.Dispose();
+                }
+            }
+        }
+
+        [HttpGet]
+        public JsonResult CompressionFile(string fileId)
+        {
+            var file = fileService.GetFileById(fileId);
+
+            var result = new
+            {
+                FileName = file.FileName,
+                Size = file.Size.ToFileSize(),
+                Compression = file.Compression
+            };
+
+            Session["currentFileId"] = file.Id;
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public FileStreamResult DownloadPublic(string shareLink)
@@ -183,14 +331,14 @@ namespace Epam_FinalProject_FileManager.Controllers
             var file = fileService.GetFileByShareLink(shareLink);
             Stream outStream = null;
 
-            if (file.Compression == "1")
+            if (file.Compression == "Deflate")
             {
                 using (var inStream = new FileStream(file.FilePath, FileMode.Open))
                 {
                     outStream = CompressionTechniques.DEFLATE.DEFLATECompressor.Decompress(inStream);
                 }
             }
-            else if (file.Compression == "2")
+            else if (file.Compression == "LZMA")
             {
                 using (var inStream = new FileStream(file.FilePath, FileMode.Open))
                 {
@@ -256,8 +404,11 @@ namespace Epam_FinalProject_FileManager.Controllers
         {
             if (fileService.IsUserHasFile(fileId, User.Identity.GetUserId()))
             {
+                var file = fileService.GetFileById(fileId);
                 if (fileService.DeleteFile(fileId))
                 {
+                    System.IO.File.Delete(file.FilePath);
+
                     return Content("{\"status\":\"true\",\"message\":\"OK\"}", "application/json");
                 }
             }
@@ -287,16 +438,16 @@ namespace Epam_FinalProject_FileManager.Controllers
 
                     var compressionOption = (string)Session["selectedCompression"];
 
-                    if ((compressionOption == null) || (compressionOption == "0"))
+                    if ((compressionOption == null) || (compressionOption == ""))
                     {
                         fileStream = hpf.InputStream;
 
                     }
-                    else if (compressionOption == "1")
+                    else if (compressionOption == "Deflate")
                     {
                         fileStream = CompressionTechniques.DEFLATE.DEFLATECompressor.Compress(hpf.InputStream);
                     }
-                    else if (compressionOption == "2")
+                    else if (compressionOption == "LZMA")
                     {
                         fileStream = new FileStream(@"compressed.lzma", FileMode.Create);
                         CompressionTechniques.LZMA.Compress(hpf.InputStream, fileStream);
@@ -351,6 +502,7 @@ namespace Epam_FinalProject_FileManager.Controllers
                                     if (space > fileStream.Length)
                                     {
                                         System.IO.File.Move(tempFilePath, endFilePath);
+                                        System.IO.File.Delete(tempFilePath);
                                         fileService.AddFileToUser(newFile, userId);
                                         r.Add(new UploadFileResult()
                                         {

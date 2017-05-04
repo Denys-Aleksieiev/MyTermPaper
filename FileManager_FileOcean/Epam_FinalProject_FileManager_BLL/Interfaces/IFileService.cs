@@ -17,6 +17,7 @@ namespace Epam_FinalProject_FileManager_BLL.Interfaces
         IEnumerable<FileEntityDTO> GetAllUserOtherFiles(string userid);
         void AddFileToUser(FileEntityDTO file, string userId);
         bool DeleteFile(string fileId);
+        bool UpdateFile(FileEntityDTO file);
         bool IsUserHasFile(string fileId, string userId);
         bool IsUserHasFile(FileEntityDTO file, string userId);
         string CalculateMD5Hash(string path);

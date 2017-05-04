@@ -251,6 +251,64 @@ function ShareFile(element) {
     currentFileId = id;
     $('#fileSharingModal').modal('show');
 }
+
+function CompressFile(element) {
+    var el = $(element);
+    var id = el.parent().parent().parent().parent().parent().prop('id');
+    PopulateCompressionModal(id);
+    currentFileId = id;
+    $('#fileCompressingModal').modal('show');
+}
+
+function DecompressFile() {
+    $.ajax({
+        type: "POST",
+        url: "/MyStorage/Decompress",
+        success: function (data) {
+            $('#compressionModalFileName').html(data.FileName);
+            $('#compressionModalSize').html(data.Size);
+            $('#compressionModalCompression').html(data.Compression);
+
+            $("#" + data.Id).children(".updateSize").html(data.Size);
+            $("#" + data.Id).children(".updateCompression").html(data.Compression);
+
+            if (data.Compression && data.Compression != "") {
+                disableCompress();
+            } else {
+                disableDecompress();
+            }
+        },
+        fail: function (reason) {
+            console.log(reason);
+        }
+    });
+}
+
+function Compress(strategy) {
+    $.ajax({
+        type: "POST",
+        url: "/MyStorage/Compress",
+        data: { strategy: strategy },
+        success: function (data) {
+            $('#compressionModalFileName').html(data.FileName);
+            $('#compressionModalSize').html(data.Size);
+            $('#compressionModalCompression').html(data.Compression);
+
+            $("#" + data.Id).children(".updateSize").html(data.Size);
+            $("#" + data.Id).children(".updateCompression").html(data.Compression);
+
+            if (data.Compression && data.Compression != "") {
+                disableCompress();
+            } else {
+                disableDecompress();
+            }
+        },
+        fail: function (reason) {
+            console.log(reason);
+        }
+    });
+}
+
 function FileSharingDone(element) {
     var el = $(element);
     var access = $('#accessByLinkSelect').val();
@@ -334,68 +392,106 @@ function GetShareLinkRequest(fileId) {
         }
     });
 }
-function DeleteFileRequest() {
+function PopulateCompressionModal(fileId) {
     $.ajax({
-        type: "POST",
-        url: "/MyStorage/Delete",
+        type: "GET",
+        url: "/MyStorage/CompressionFile",
         data: {
-            fileId: currentFileId
+            fileId: fileId,
         },
-        success: DeleteFileCallback
-    });
-}
-function UpdateFilesRequest() {
-    $.ajax({
-        type: "GET",
-        url: "/MyStorage/UserFiles",
-        data: {
-            sortOrder: GetSortOrder(),
-            searchString: $('#searchString').val(),
-        },
-        success: UpdateFilesCallback
-    });
-}
-function UpdateDocumentFilesRequest() {
-    $.ajax({
-        type: "GET",
-            url: "/MyStorage/UserDocumentFiles",
-                data: {
-                sortOrder: GetSortOrder(),
-                        searchString: $('#searchString').val(),
-                        },
-                            success : UpdateFilesCallback
-                });
-}
-function UpdateAudioFilesRequest() {
-    $.ajax({
-        type: "GET",
-            url: "/MyStorage/UserAudioFiles",
-                data: {
-                sortOrder: GetSortOrder(),
-                        searchString: $('#searchString').val(),
-                        },
-                            success : UpdateFilesCallback
-                });
-}
-function UpdateVideoFilesRequest() {
-    $.ajax({
-        type: "GET",
-            url: "/MyStorage/UserVideoFiles",
-                data: {
-                sortOrder: GetSortOrder(),
-                        searchString: $('#searchString').val(),
-                        },
-                            success : UpdateFilesCallback
-                });
-                }
-function UpdateFreeStorageSizeRequest()
-{
-    $.ajax({
-        type: "GET",
-        url: "/MyStorage/UserStorageSize",
         success: function (data) {
-            $('#storageCapacityText').html('Ocupied ' + data.occupiedSize + ' from ' + data.totalSize);
-            $('#freeStorageSize').css('width', data.percent + '%');
+            $('#compressionModalFileName').html(data.FileName);
+            $('#compressionModalSize').html(data.Size);
+            $('#compressionModalCompression').html(data.Compression);
+
+            if (data.Compression && data.Compression != "") {
+                disableCompress();
+            } else {
+                disableDecompress();
+            }
+        },
+        fail: function (reason) {
+            console.log(reason);
         }
     });
 }
+
+function disableCompress() {
+    $('#popupCompressButton').attr('disabled', 'disabled');
+    $('#popupCompressButton').addClass('disabled');
+    $('#popupDecompressButton').removeAttr('disabled');
+    $('#popupDecompressButton').removeClass('disabled');
+}
+
+function disableDecompress() {
+    $('#popupDecompressButton').attr('disabled', 'disabled');
+    $('#popupDecompressButton').addClass('disabled');
+    $('#popupCompressButton').removeAttr('disabled');
+    $('#popupCompressButton').removeClass('disabled');
+}
+
+    function DeleteFileRequest() {
+        $.ajax({
+            type: "POST",
+            url: "/MyStorage/Delete",
+            data: {
+                fileId: currentFileId
+            },
+            success: DeleteFileCallback
+        });
+    }
+    function UpdateFilesRequest() {
+        $.ajax({
+            type: "GET",
+            url: "/MyStorage/UserFiles",
+            data: {
+                sortOrder: GetSortOrder(),
+                searchString: $('#searchString').val(),
+            },
+            success: UpdateFilesCallback
+        });
+    }
+    function UpdateDocumentFilesRequest() {
+        $.ajax({
+            type: "GET",
+            url: "/MyStorage/UserDocumentFiles",
+            data: {
+                sortOrder: GetSortOrder(),
+                searchString: $('#searchString').val(),
+            },
+            success : UpdateFilesCallback
+        });
+    }
+    function UpdateAudioFilesRequest() {
+        $.ajax({
+            type: "GET",
+            url: "/MyStorage/UserAudioFiles",
+            data: {
+                sortOrder: GetSortOrder(),
+                searchString: $('#searchString').val(),
+            },
+            success : UpdateFilesCallback
+        });
+    }
+    function UpdateVideoFilesRequest() {
+        $.ajax({
+            type: "GET",
+            url: "/MyStorage/UserVideoFiles",
+            data: {
+                sortOrder: GetSortOrder(),
+                searchString: $('#searchString').val(),
+            },
+            success : UpdateFilesCallback
+        });
+    }
+    function UpdateFreeStorageSizeRequest()
+    {
+        $.ajax({
+            type: "GET",
+            url: "/MyStorage/UserStorageSize",
+            success: function (data) {
+                $('#storageCapacityText').html('Ocupied ' + data.occupiedSize + ' from ' + data.totalSize);
+                $('#freeStorageSize').css('width', data.percent + '%');
+            }
+        });
+    }

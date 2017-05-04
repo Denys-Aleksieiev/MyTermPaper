@@ -67,6 +67,23 @@ namespace Epam_FinalProject_FileManager_DAL.Repositories
             Guid fId = Guid.Parse(fileId);
             return _context.FileEntities.Find(fId);
         }
+
+        public bool UpdateFile(FileEntity file)
+        {
+            var original = _context.FileEntities.Find(file.Id);
+            
+            if(original != null)
+            {
+                _context.Entry(original).CurrentValues.SetValues(file);
+                _context.SaveChanges();
+                return true;
+                
+            }else
+            {
+                return false;
+            }
+        }
+
         public FileEntity GetFileByShareLink(Guid shareLink)
         {
             return _context.FileEntities.FirstOrDefault(f => f.ShareLink == shareLink);

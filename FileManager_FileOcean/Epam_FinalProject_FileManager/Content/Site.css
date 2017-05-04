@@ -27,36 +27,42 @@ textarea {
     position: relative;
     overflow: hidden;
 }
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+.green {
+    color: green;
 }
 
-.green{
-    color:green;
+.red {
+    color: red;
 }
 
-.red{
-    color:red;
-}
-
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer;
 }
 
-.progress{
-    border: 3px; 
-    border-radius: 5px; 
+.progress {
+    border: 3px;
+    border-radius: 5px;
     height: 12px;
+}
+
+.disabled {
+    background: none repeat scroll 0 0 burlyWood;
+    cursor: default !important;
 }

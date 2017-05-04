@@ -15,6 +15,7 @@ namespace Epam_FinalProject_FileManager_DAL.Interfaces
         FileEntity GetFileByShareLink(Guid shareLink);
         bool DeleteFileById(string fileId);
         void UpdateShareLink(string fileId, Guid? newShareLink);
+        bool UpdateFile(FileEntity file);
         IEnumerable<FileEntity> GetAllPublicFiles();
 
     }
